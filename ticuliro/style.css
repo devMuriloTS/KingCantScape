@@ -5,6 +5,7 @@
 
 /* Aplicando estilos */
 .hero-text {
+    margin-left: 50px;
     font-family: "Baskervville SC", serif;
     font-weight: 400;
     font-style: normal;
@@ -15,10 +16,12 @@
 }
 
 .hero-text-left, .hero-text-right {
-    font-size: 24px;
-    font-weight: 700; /* Definindo a fonte como bold (700) */
+    color:#e6b800;
+    -webkit-text-stroke-width: 1px; /* largura da borda */
+    -webkit-text-stroke-color: #000; /* cor da borda */
+    font-size: 60px;
+    font-weight: 400; /* Definindo a fonte como bold (700) */
     font-family: "Baskervville SC", serif;
-    font-weight: 400;
     font-style: normal;
 }
 
@@ -182,3 +185,4 @@ body {
     border-color: #e6b800; /* Alterando a cor da borda ao passar o mouse */
     transform: scale(1.4); /* Efeito de escala sutil ao passar o mouse */
 }
+
