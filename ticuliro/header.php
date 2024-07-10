@@ -1,3 +1,12 @@
+
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+$logged_in = isset($_SESSION['logged_in']) && $_SESSION['logged_in'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,18 +29,33 @@
         </div>
 
         <div class="btnHeader">
-            <a href="baixar.php" class="btn-download">Download</a>
+            <?php if($logged_in): ?>
+                <a href="baixar.php" class="btn-download">Baixar</a>
+            <?php else: ?>
+                <a href="login.php" class="btn-download">Baixar</a>
+            <?php endif; ?>
         </div>
 
         <div class="login">
-            <a href="login.php">
+            <?php if($logged_in): ?>
                 <span>
-                    Login
-                    <div class="iconLogin">
-                        <!-- Se desejar, adicione um ícone de login aqui -->
-                    </div>
+                    <a href="consUsuario.php"> <?php echo $_SESSION['nickname']; ?> </a>
+                    <a href="logout.php">
+                        <div class="iconLogin">
+                            Logout <!-- Você pode adicionar um ícone de logout aqui se desejar -->
+                        </div>
+                    </a>
                 </span>
-            </a>
+            <?php else: ?>
+                <a href="login.php">
+                    <span>
+                        Login
+                        <div class="iconLogin">
+                            <!-- Se desejar, adicione um ícone de login aqui -->
+                        </div>
+                    </span>
+                </a>
+            <?php endif; ?>
         </div>
     </header>
 </body>

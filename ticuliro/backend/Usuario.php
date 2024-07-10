@@ -36,13 +36,16 @@ class Usuario
 
 
     public function registrar($nickname, $nome, $email, $senha, $dataNasc){
-        $ativo = 1;
-        $query = "INSERT INTO " . $this->table_name . " (nome, nickname, dataNasc, email, senha, ativo) VALUES (?,?,?,?,?)";
+        $query = "INSERT INTO " . $this->table_name . " (nome, nickname, dataNasc, email, senha) VALUES (?,?,?,?,?)";
         $stmt = $this->conn->prepare($query);
         $hashed_password = password_hash($senha, PASSWORD_BCRYPT);
-        $stmt->execute([$nickname, $nome, $email, $hashed_password, $dataNasc]);
+        $stmt->execute([$nome, $nickname, $dataNasc, $email, $hashed_password]);
         return $stmt; 
     } 
+
+    public function criar($nickname, $nome, $email, $senha, $dataNasc){
+        return $this ->registrar($nickname, $nome, $email, $senha, $dataNasc);
+    }
     
     public function login($nickname, $senha){
         $query = "SELECT * FROM " . $this->table_name . " WHERE nickname = ?";
@@ -82,6 +85,8 @@ class Usuario
         $stmt->execute([$id]);
         return $stmt;
     } // certo
+
+    
 
 
     public function buscarPorEmail($email) {

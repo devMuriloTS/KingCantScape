@@ -8,12 +8,15 @@
     if($_SERVER['REQUEST_METHOD'] === "POST"){
         if(isset($_POST['login'])){
             // Processar login
-            $email = $_POST['nickname'];
+            $nickname = $_POST['nickname'];
             $senha = $_POST['senha'];
-            if($dados_usuario = $usuario->login($email, $senha)){
+            if($dados_usuario = $usuario->login($nickname, $senha)){
+                $_SESSION['logged_in'] = true;
+                $_SESSION['nickname'] = $nickname;
                 $_SESSION['usuario_id'] = $dados_usuario['id'];
                 header('Location: index.php');
                 exit();
+                
             }else{
                 $mensagem_erro = "Credenciais inválidas!";
             }
@@ -36,10 +39,11 @@
     <div class="seila">
         <form method="POST">
             <p>Autenticação</p>
-            <label>Email</label>
-            <input type="email" name="email" required/>
+            <label>Nickname</label>
+            <input type="text" name="nickname" required/>
             <label>Senha</label>
             <input type="password" name="senha" required />
+            
             <button type="submit" name="login">Login</button>
         </form>
         <div class="mensagem">

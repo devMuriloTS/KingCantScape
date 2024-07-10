@@ -1,4 +1,7 @@
-<?php include_once "header.php"; ?>
+<?php include_once "header.php"; 
+$logged_in = isset($_SESSION['logged_in']) && $_SESSION['logged_in'];
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,6 +12,7 @@
     <title>King Can't Scape!</title>
 </head>
 <body>
+    
     <main class="container">
         <section class="hero">
             <div class="hero-content">
@@ -26,7 +30,7 @@
             <div class="about-game-text">
                 <h2>Sobre o Jogo</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget lorem in urna mattis aliquet.</p>
-                <a href="baixar.php" class="btn-download">Download</a>
+                <a href="baixar.php" class="btn-download">Baixar</a>
             </div>
             <div class="game-image-container">
                 <img src="fundo.jpeg" alt="Imagem do jogo" class="game-image">
@@ -34,6 +38,23 @@
             </div>
         </div>
     </section>
+    <div class="linha-preta"></div>
+    <div id="feedbacks" class="feedbacks">
+        <div class="feedbacks-titulo">
+            <h1> Feedbacks </h1>
+            <p> Publique seu feedback sobre o nosso projeto Ticuliro! </p>
+        </div>
+        
+        <?php if($logged_in): ?>
+        
+        <div class="feedbacks-publicar">
+            <form method="POST">
+                <label for="conteudo">Escreva o feedback:</label>
+                <textarea></textarea>
+            </form>
+        </div>
+        <?php endif; ?>
+    </div>
     <?php include_once "footer.php"; ?>
 </body>
 </html>

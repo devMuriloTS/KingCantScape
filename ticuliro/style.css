@@ -34,8 +34,8 @@
 
 * {
     font-family: "Baskervville SC", serif;
-  font-weight: 400;
-  font-style: normal;
+    font-weight: 400;
+    font-style: normal;
     scroll-behavior: smooth;
     box-sizing: border-box;
     margin: 0;
@@ -44,12 +44,13 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #ffffff;
     color: #333;
 }
 
 .container {
     background-image: url(fundocontainer.jpeg);
+    background-repeat: no-repeat;
+    background-size: 100%;
     background-position-x: 100%;
     width: 100%;
     max-width: 1400px;
@@ -81,8 +82,9 @@ body {
 
 .about-game {
     background-color: #fff;
-    padding: 80px 20px;
+    padding: 80px 20px 30px 20px;
     text-align: center;
+    border-bottom:#000 1cm black;
 }
 
 .about-game-content {
@@ -186,3 +188,14 @@ body {
     transform: scale(1.4); /* Efeito de escala sutil ao passar o mouse */
 }
 
+.linha-preta {
+    height: 2px; /* altura da linha */
+    background-color: #000; /* cor da linha */
+}
+
+.feedbacks-titulo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

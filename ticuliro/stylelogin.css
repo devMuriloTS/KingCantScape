@@ -1,5 +1,7 @@
 body{
     background-image: url("fundo.jpeg");
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
 
 .seila {
@@ -27,7 +29,7 @@ body{
     margin-bottom: 5px;
 }
 
-.seila input[type="email"],
+.seila input[type="text"],
 .seila input[type="password"] {
     padding: 10px;
     margin-bottom: 10px;
