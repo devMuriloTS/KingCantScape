@@ -20,7 +20,7 @@ $logged_in = isset($_SESSION['logged_in']) && $_SESSION['logged_in'];
         <div class="logo">
             <a href="index.php">
                 <div class="imagemLogo">
-                    <img src="reizinho.png" alt="Logo do jogo. Rei." width="50px" height="50px">
+                    <img class="logoi" src="cabeca.png" alt="Logo do jogo. Rei." width="60px" style="margin-top: 5px;">
                 </div>
                 <div class="nomeLogo">
                     <span class="Nome">King Can't Scape!</span>
@@ -39,7 +39,7 @@ $logged_in = isset($_SESSION['logged_in']) && $_SESSION['logged_in'];
         <div class="login">
             <?php if($logged_in): ?>
                 <span>
-                    <a href="consUsuario.php"> <?php echo $_SESSION['nickname']; ?> </a>
+                    <a href="consultUsu.php"> <?php echo $_SESSION['nickname']; ?> </a>
                     <a href="logout.php">
                         <div class="iconLogin">
                             Logout <!-- Você pode adicionar um ícone de logout aqui se desejar -->

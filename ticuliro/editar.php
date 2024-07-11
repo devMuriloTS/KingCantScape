@@ -51,16 +51,16 @@ $row = $usuario->lerPorId($_SESSION['usuario_id']);
                     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
 
                     <div>
-                        <label for="nome">Nome:</label>
+                        <label for="nome">Nome:</label><br><br>
                         <input type="text" name="nome" value="<?php echo $row['nome']; ?>" required>
                         <br><br>
                     </div>
                     <div>
-                        <label for="nickname">nickname:</label>
-                        <input required class="form-control" name="fone" id="fone" type="text" maxlength="16" value="<?php echo $row['nickname']; ?>">
+                        <label for="nickname">nickname:</label><br><br>
+                        <input required class="form-control" name="nickname" id="nickname" type="text" maxlength="16" value="<?php echo $row['nickname']; ?>">
                     </div>
                     <div>
-                        <label for="email">E-mail:</label>
+                        <label for="email">E-mail:</label><br><br>
                         <input required name="email" id="email" type="email" value="<?php echo $row['email']; ?>">
                     </div>
                     <input style="margin-left: 31%" type="submit" name="login" value="Atualizar"><br><br>

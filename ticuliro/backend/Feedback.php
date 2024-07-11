@@ -4,9 +4,9 @@ class Feedback {
     private $db;
     private $table_name = "tbfeedback";
 
-    public function __construct($db)
+    public function __construct($conn)
     {
-        $this->conn = $db;
+        $this->conn = $conn;
     }
 
     
@@ -16,7 +16,7 @@ class Feedback {
         return $this->registrar($idUsu, $feedback, $data);
     }
 
-    public function ler($search = '', $order_by = '') {
+    public function lerFeed($search = '', $order_by = '') {
         $query = "SELECT f.id, u.nickname as usuario, f.feedback, f.data 
                   FROM usuarios AS u 
                   INNER JOIN tbfeedback AS f ON u.id = f.idUsu";
@@ -42,6 +42,7 @@ class Feedback {
         $stmt->execute($params);
         return $stmt;
     }
+
     public function lerPorId($idUsu)
     {
         $query = "SELECT * FROM " . $this->table_name . " WHERE idFeed = ?";
