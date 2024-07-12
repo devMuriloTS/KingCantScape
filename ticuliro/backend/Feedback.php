@@ -1,7 +1,6 @@
 <?php
 class Feedback {
     private $conn;
-    private $db;
     private $table_name = "tbfeedback";
 
     public function __construct($conn)
@@ -16,30 +15,10 @@ class Feedback {
         return $this->registrar($idUsu, $feedback, $data);
     }
 
-    public function lerFeed($search = '', $order_by = '') {
-        $query = "SELECT f.id, u.nickname as usuario, f.feedback, f.data 
-                  FROM usuarios AS u 
-                  INNER JOIN tbfeedback AS f ON u.id = f.idUsu";
-        $conditions = [];
-        $params = [];
-
-        if ($search) {
-            $conditions[] = "(f.feedback LIKE :search)";
-            $params[':search'] = '%' . $search . '%';
-        }
-
-        if ($order_by === 'feedback') {
-            $query .= " ORDER BY f.feedback";
-        } elseif ($order_by === 'data') {
-            $query .= " ORDER BY f.data";
-        }
-
-        if (count($conditions) > 0) {
-            $query .= " WHERE " . implode(' AND ', $conditions);
-        }
-
+    public function lerFeed() {
+        $query = "SELECT tbfeedback.idFeed, usuarios.nickname AS nickname, tbfeedback.feedback, tbfeedback.data  FROM tbfeedback INNER JOIN usuarios ON tbfeedback.idUsu = usuarios.id";
         $stmt = $this->conn->prepare($query);
-        $stmt->execute($params);
+        $stmt->execute();
         return $stmt;
     }
 

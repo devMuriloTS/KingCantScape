@@ -1,12 +1,12 @@
 <?php include_once "header.php";
 $logged_in = isset($_SESSION['logged_in']) && $_SESSION['logged_in'];
-
+include_once './config/Config.php';
 include_once './backend/Usuario.php';
 include_once './backend/Feedback.php';
 
 $feedback = new Feedback($db);
 
-$dados_feedback = $feedback->lerFeed($search, $order_by);
+$dados_feedback = $feedback->lerFeed();
 
 
 ?>
@@ -61,7 +61,8 @@ $dados_feedback = $feedback->lerFeed($search, $order_by);
             <div class="feedbacks-publicar">
                 <form method="POST">
                     <label for="conteudo">Escreva o feedback:</label>
-                    <textarea></textarea>
+                    <br>
+                    <textarea cols="70" rows="5"></textarea>
                     <div class="enviar">
                         <span class="enviar_span">
                             <input type="button" class="input_enviar" value="Enviar">
@@ -70,20 +71,22 @@ $dados_feedback = $feedback->lerFeed($search, $order_by);
                 </form>
             </div>
         <?php endif; ?>
-        <div class="feedbacks-publicados">
-            <?php while ($row = $dados_feedback->fetch(PDO::FETCH_ASSOC)) : ?>
-                <table>
-                    <th>
-                    <td><?php echo $row['nickname']; ?></td>
-                    <td><?php echo $row['data']; ?></td>
-                    </th>
-                </table>
-                <table class="feedbacks-publicados">
-                    <tbody>
-                        <td><?php echo $row['feedback']; ?></td>
-                    </tbody>
-                </table>
-            <?php endwhile; ?>
+            <div class="feedbacks-publicados">
+            <table border="1">
+        <tr>
+            autor
+            data
+            feedback
+        </tr>
+        <br>
+        <?php while ($row = $dados_feedback->fetch(PDO::FETCH_ASSOC)) : ?>
+        <tr>
+            <?php echo $row['nickname']; ?>
+            <?php echo $row['data']; ?>
+            <?php echo $row['feedback']; ?>
+        </tr>
+        <?php endwhile; ?>
+    </table>
         </div>
     </div>
     <?php include_once "footer.php"; ?>
