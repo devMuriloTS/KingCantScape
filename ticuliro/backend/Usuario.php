@@ -72,10 +72,10 @@ class Usuario
         return $stmt -> fetch(PDO::FETCH_ASSOC);
     }
 
-    public function atualizar($id, $nickname, $nome, $email){
-        $query = "UPDATE " . $this->table_name . " SET nickname = ?, nome = ?, email = ? WHERE id = ?";
+    public function atualizar($id, $nome, $nickname, $email){
+        $query = "UPDATE " . $this->table_name . " SET nome = ?, nickname = ?, email = ? WHERE id = ?";
         $stmt = $this->conn->prepare($query);
-        $stmt->execute ([$nickname, $nome, $email, $id]);
+        $stmt->execute ([$nome, $nickname, $email, $id]);
         return $stmt;
     } // certo
 
