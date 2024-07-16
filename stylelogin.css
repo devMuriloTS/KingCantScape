@@ -1,0 +1,69 @@
+body{
+    background-image: url("fundo.jpeg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.seila {
+    font-family: Arial, sans-serif;
+    justify-content: center;
+    align-items: center;
+    height: 20rem;
+    margin-left: 40%;
+    margin-top: 6%;
+    background-color: #ffffffc9;
+    border: 2px solid black;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+.seila form {
+    padding: 1 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.seila label {
+    margin-bottom: 5px;
+}
+
+.seila input[type="text"],
+.seila input[type="password"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.seila button[type="submit"] {
+    padding: 10px;
+    background-color: #fffb28;
+    color: #000000;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.seila button[type="submit"]:hover {
+    background-color: #b3a700;
+}
+
+.seila .mensagem {
+    margin-top: 10px;
+    color: red;
+    font-size: 14px;
+}
+
+.seila a {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    text-decoration: none;
+    color: #007bff;
+    font-size: 14px;
+}
+
