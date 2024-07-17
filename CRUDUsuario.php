@@ -90,7 +90,7 @@ if ($search || $order_by) {
                         <td><?php echo $row['nickname']; ?></td>
                         <td><?php echo $row['email']; ?></td>
                         <td>
-                            <a href="crudusuario.php?deletar=<?php echo $row['id']; ?>">Banir</a>
+                            <a href="deletar.php?id=<?php echo $row['id']; ?>">Banir</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

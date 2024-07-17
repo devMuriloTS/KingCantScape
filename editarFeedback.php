@@ -11,24 +11,26 @@ include_once './backend/Usuario.php';
 include_once './backend/Feedback.php';
 
 $usuario = new Usuario($db);
-$feedback = new Feedback($db);
+$f = new Feedback($db);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // $dados_usuario = $usuario->lerPorId($_SESSION['usuario_id']);
+    // $idFeed = $dados_usuario['id'];
 
-    $dados_usuario = $usuario->lerPorId($_SESSION['usuario_id']);
-    $idUsu = $dados_usuario['id'];
+    $idFeed = $_POST['id'];
 
-    $data = $_POST['data'];
-    $feedbacks = $_POST['feedback'];
+    
+    $date = date('Y-m-d');
+    $feedback = $_POST['feedback'];
 
-    $noticia->atualizar($idUsu, $data, $feedback);
+    $f->atualizarFeed($idFeed, $feedback);
     header('Location: CRUDFeedback.php');
     exit();
 }
 
-if (isset($_GET['id'])) {
-    $idNot = $_GET['idnot'];
-    $row = $feedback->lerPorId($idNot);
+if (isset($_GET['idFeed'])) {
+    $idFeed = $_GET['idFeed'];
+    $row = $f->lerPorId($idFeed);
 }
 ?>
 
@@ -55,10 +57,9 @@ if (isset($_GET['id'])) {
             </div>
             <div class="card-body">
                 <form method="POST">
-
+                <input type="hidden" name="id" value="<?php echo $row['idFeed']; ?>">
                     <div class="form-group">
-                        <label for="noticia">Notícia:</label><br>
-                        <textarea cols="38" class="form-control" rows="20" required name="noticia" id="noticia"></textarea>
+                        <textarea cols="38" rows="20" required name="feedback" <?php echo $row['feedback']; ?>></textarea>
                     </div>
 
                     <input type="submit" name="login" class="btn" value="Editar"><br>

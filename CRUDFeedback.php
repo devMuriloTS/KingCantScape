@@ -54,8 +54,8 @@ $dados_feedback = $feedback->lerFeed();
                 <table class="table-2" border="1">
                     <tr>
                         <td><?php echo nl2br($row['feedback']); ?></td>
-                        <td><a href="editarFeedback.php?idfed=<?php echo $row['idFeed']; ?>">Editar</a></td>
-                        <td><a href="deletar.php?idfed=<?php echo $row['idFeed']; ?>">Deletar</a></td>
+                        <td><a href="editarFeedback.php?idFeed=<?php echo $row['idFeed']; ?>">Editar</a></td>
+                        <td><a href="deletarFeed.php?idFeed=<?php echo $row['idFeed']; ?>">Deletar</a></td>
                     </tr>
                 </table><br><br>
             <?php endwhile; ?>

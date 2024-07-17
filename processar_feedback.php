@@ -1,40 +1,54 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-    session_start();
-    $logged_in = isset($_SESSION['logged_in']) && $_SESSION['logged_in'];
+include_once './config/Config.php';
+include_once './backend/Usuario.php';
+include_once './backend/Feedback.php';
+include_once './backend/Database.php';
 
-    if (!$logged_in) {
-        header("Location: login.php"); 
-        exit;
-    }
-    
-    include_once './config/Config.php'; 
-    include_once './backend/Feedback.php';
-    
-    $conteudo = $_POST['conteudo'];
-    $idUsu = $_POST['idUsu'];
-    
-    // Criar uma instância da classe Database para obter a conexão
-    $database = new Database();
-    $db = $database->getConnection();
-    
-    // Cria uma instância da classe Feedback
-    $feedback = new Feedback($db);
-    
-    // Insere o feedback no banco de dados
-    $inserido = $feedback->inserirFeedback($conteudo, $idUsu);
-    
-    if ($inserido) {
-        header("Location: index.php");
-        exit;
+session_start();
+$idUsu = isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : null; // Obtém o ID do usuário logado
+$conteudo = isset($_POST['conteudo']) ? $_POST['conteudo'] : null; // Obtém o conteúdo do feedback
+
+if (!$idUsu) {
+    // Caso o usuário não esteja logado, redireciona para a página de login
+    header('Location: login.php');
+    exit;
+}
+
+if (!$conteudo) {
+    // Caso o conteúdo do feedback não tenha sido enviado, redireciona para a página anterior com mensagem de erro
+    $_SESSION['message'] = 'Por favor, escreva seu feedback.';
+    $_SESSION['message_type'] = 'error';
+    header('Location: index.php#feedbacks');
+    exit;
+}
+
+try {
+    $db = new Database();
+    $conn = $db->getConnection();
+
+    // Cria um objeto Feedback e insere o feedback no banco de dados
+    $feedback = new Feedback($conn);
+    $resultado = $feedback->inserirFeedback($conteudo, $idUsu);
+
+    if ($resultado) {
+        // Feedback inserido com sucesso
+        $_SESSION['message'] = 'Feedback enviado com sucesso!';
+        $_SESSION['message_type'] = 'success';
     } else {
-        echo "Ocorreu um erro ao processar seu feedback. Por favor, tente novamente mais tarde.";
+        // Erro ao inserir feedback
+        $_SESSION['message'] = 'Erro ao enviar o feedback. Tente novamente mais tarde.';
+        $_SESSION['message_type'] = 'error';
     }
-    
-} else {
-    // Se o método da requisição não for POST, redireciona para alguma página de erro
-    header("Location: index.php"); // Substitua 'error.php' pela página de erro apropriada
+
+    // Redireciona de volta para a página principal
+    header('Location: index.php#feedbacks');
+    exit;
+
+} catch (PDOException $e) {
+    // Em caso de erro de conexão com o banco de dados
+    $_SESSION['message'] = 'Erro ao conectar ao banco de dados: ' . $e->getMessage();
+    $_SESSION['message_type'] = 'error';
+    header('Location: index.php#feedbacks');
     exit;
 }
 ?>

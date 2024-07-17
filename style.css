@@ -1,9 +1,4 @@
 /* Reset básico */
-
-/* Importando a fonte do Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Baskervville+SC&display=swap');
-
-/* Estilos gerais */
 * {
     margin: 0;
     padding: 0;
@@ -45,7 +40,8 @@ body {
     margin-left: 2%;
 }
 
-.hero-text-1, .hero-text-2 {
+.hero-text-1,
+.hero-text-2 {
     color: #e6b800;
     font-size: 60px;
     font-weight: 400;
@@ -60,7 +56,8 @@ body {
     margin: 0 20px;
 }
 
-.btn-scroll, .btn-download {
+.btn-scroll,
+.btn-download {
     display: inline-block;
     padding: 15px 30px;
     background-color: #ffcc00;
@@ -72,7 +69,8 @@ body {
     border: 2px solid #ffcc00;
 }
 
-.btn-scroll:hover, .btn-download:hover {
+.btn-scroll:hover,
+.btn-download:hover {
     background-color: #e6b800;
     transform: scale(1.05);
 }
@@ -135,21 +133,6 @@ body {
     z-index: 0;
 }
 
-/* Ajustes responsivos */
-@media (max-width: 768px) {
-    .about-game-content {
-        flex-direction: column;
-    }
-
-    .about-game-text, .game-image-container {
-        max-width: 100%;
-    }
-
-    .game-image {
-        height: auto;
-    }
-}
-
 /* Feedbacks */
 .feedbacks-titulo {
     display: flex;
@@ -165,19 +148,16 @@ body {
 }
 
 .table {
-    width: 80%;    
-    margin-left: 10%;
     border-bottom: none;
 }
 
-.table-2{
-    width: 80%;    
-    margin-left: 10%;
+.table-2 {
     border-top: none;
 }
 
-th, td {
-    padding: 10px;
+th,
+td {
+    padding: 3px;
     text-align: center;
 }
 
@@ -209,3 +189,72 @@ textarea {
     background-color: #e6b800;
     transform: scale(1.03);
 }
+
+.table,
+.table-2 {
+    width: 100%;
+    margin-left: 0;
+    table-layout: fixed; /* Ensures that table width is fixed */
+}
+
+td {
+    overflow: hidden; /* Hide overflow text */
+    text-overflow: ellipsis; /* Add ellipsis for overflowed text */
+    white-space: nowrap; /* Prevent text from wrapping */
+    border-color: black;
+}
+
+/* To allow wrapping for feedback content */
+.table-2 td {
+    white-space: normal; /* Allow wrapping for feedback content */
+    overflow-wrap: break-word; /* Break long words onto the next line */
+}
+
+/* Feedbacks */
+.feedbacks {
+    display: block;
+    background-color: #f2f2f2;
+    padding: 50px 20px;
+
+}
+
+.feedbacks-titulo {
+    margin-bottom: 30px;
+}
+
+.feedback-publicar {
+    margin-bottom: 30px;
+}
+
+.feedback-item {
+    width: 60%;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    background-color: #ffdd57;
+    border-radius: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: left; /* Ajusta o texto para a esquerda */
+    display: inline-block; /* Para centralizar horizontalmente */
+}
+
+.feedback-item table {
+    width: 90%;
+    margin: 0 auto; /* Centraliza a tabela horizontalmente */
+    border-collapse: collapse;
+}
+
+.feedback-item table td {
+    padding: 10px;
+    border: 0.15rem solid #000000;
+}
+
+.feedback-item .btn-download {
+    margin-right: 10px;
+}
+
+.feedbacks-publicados{
+    text-align: center; /* Centraliza conteúdo dentro do bloco */
+}
+

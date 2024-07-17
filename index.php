@@ -30,7 +30,6 @@ $dados_feedback = $feedback->lerFeed();
     <title>King Can't Scape!</title>
 </head>
 
-
 <body>
     <?php include_once "header.php"; ?>
 
@@ -67,45 +66,55 @@ $dados_feedback = $feedback->lerFeed();
         </div>
     </section>
     <div id="feedbacks" class="feedbacks">
-        <div class="feedbacks-titulo">
-            <h1>Feedbacks</h1>
-            <p>Publique seu feedback sobre o nosso primeiro jogo feito em 15 dias!</p>
+    <div class="feedbacks-titulo">
+        <h1>Feedbacks</h1>
+        <p>Publique seu feedback sobre o nosso primeiro jogo feito em 15 dias!</p>
+    </div>
+
+    <!-- Formulário para publicar feedback -->
+    <?php if ($logged_in) : ?>
+        <div class="feedback-publicar">
+            <form method="POST" action="processar_feedback.php">
+                <label for="conteudo">Escreva o feedback:</label><br>
+                <textarea name="conteudo" cols="70" rows="5"></textarea><br>
+
+                <!-- Campo oculto para armazenar o idUsu -->
+                <input type="hidden" name="idUsu" value="<?php echo $idUsu; ?>">
+
+                <div class="enviar">
+                    <input type="submit" class="input_enviar" value="Enviar">
+                </div>
+            </form>
         </div>
+    <?php else : ?>
+        <p>Você precisa estar logado para enviar um feedback.</p>
+    <?php endif; ?>
 
-        <?php if ($logged_in) : ?>
-            <div class="feedback-publicar">
-                <form method="POST" action="processar_feedback.php">
-                    <label for="conteudo">Escreva o feedback:</label><br>
-                    <textarea name="conteudo" cols="70" rows="5"></textarea><br>
-
-                    <!-- Campo oculto para armazenar o idUsu -->
-                    <input type="hidden" name="idUsu" value="<?php echo $idUsu; ?>">
-
-                    <div class="enviar">
-                        <input type="submit" class="input_enviar" value="Enviar">
-                    </div>
-                </form>
-            </div><br><br>
-        <?php else : ?>
-            <p>Você precisa estar logado para enviar um feedback.</p>
-        <?php endif; ?>
-
-
-        <div class="feedbacks-publicados">
-            <?php while ($row = $dados_feedback->fetch(PDO::FETCH_ASSOC)) : ?>
+    <!-- Feedbacks publicados -->
+    <div class="feedbacks-publicados">
+        <?php while ($row = $dados_feedback->fetch(PDO::FETCH_ASSOC)) : ?>
+            <div class="feedback-item">
                 <table class="table" border="1">
-                    <td><?php echo $row['nickname']; ?></td>
-                    <td><?php echo $row['data']; ?></td>
+                    <tr>
+                        <td><?php echo $row['nickname']; ?></td>
+                        <td><?php echo $row['data']; ?></td>
+                        <?php if ($row['idUsu'] == $idUsu) : ?>
+                            <td>
+                                <a href="editar_feedback.php?id=<?php echo $row['idFeed']; ?>" class="btn-download">Editar</a>
+                                <a href="excluir_feedback.php?id=<?php echo $row['idFeed']; ?>" class="btn-download">Excluir</a>
+                            </td>
+                        <?php endif; ?>
+                    </tr>
                 </table>
                 <table class="table-2" border="1">
                     <tr>
                         <td><?php echo $row['feedback']; ?></td>
                     </tr>
-                </table><br><br>
-            <?php endwhile; ?>
-
-        </div>
+                </table>
+            </div>
+        <?php endwhile; ?>
     </div>
+</div>
 
     <?php include_once "footer.php"; ?>
 </body>

@@ -1,4 +1,6 @@
 <?php
+    // Dentro do arquivo Usuario.php
+    include_once './backend/Feedback.php';
 
 class Usuario
 {
@@ -74,12 +76,34 @@ class Usuario
         return $stmt;
     } // certo
 
+
     public function deletar($id){
-        $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
-        $stmt = $this->conn->prepare($query);
-        $stmt->execute([$id]);
-        return $stmt;
-    } // certo
+        try {
+            // Iniciar uma transação
+            $this->conn->beginTransaction();
+
+            // Excluir os feedbacks associados ao usuário
+            $feedback = new Feedback($this->conn);
+            $feedback->deletarFeedByUserId($id);
+
+            // Excluir o usuário
+            $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute([$id]);
+
+            // Commit da transação se tudo ocorrer bem
+            $this->conn->commit();
+
+            return true;
+        } catch (PDOException $e) {
+            // Rollback em caso de erro
+            $this->conn->rollBack();
+            echo "Erro ao excluir usuário: " . $e->getMessage();
+            return false;
+        }
+}
+
+
 
     
 

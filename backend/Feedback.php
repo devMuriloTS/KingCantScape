@@ -57,11 +57,14 @@ class Feedback {
     
 
     public function lerFeed() {
-        $query = "SELECT tbfeedback.idFeed, usuarios.nickname AS nickname, tbfeedback.feedback, tbfeedback.data  FROM tbfeedback INNER JOIN usuarios ON tbfeedback.idUsu = usuarios.id";
+        $query = "SELECT tbfeedback.idFeed, usuarios.id AS idUsu, usuarios.nickname AS nickname, tbfeedback.feedback, tbfeedback.data  
+                  FROM tbfeedback 
+                  INNER JOIN usuarios ON tbfeedback.idUsu = usuarios.id";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt;
     }
+    
 
     public function lerPorId($idUsu)
     {
@@ -94,6 +97,21 @@ class Feedback {
         $stmt->execute([$idUsu, $data, $feedback]);
         return $stmt;
     }
+    // Dentro da classe Feedback, no arquivo Feedback.php
+
+    public function deletarFeedByUserId($userId)
+    {
+        try {
+            $query = "DELETE FROM " . $this->table_name . " WHERE idUsu = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute([$userId]);
+            return true;
+        } catch (PDOException $e) {
+            echo "Erro ao excluir feedbacks do usuário: " . $e->getMessage();
+            return false;
+        }
+    }
+
 
 }
 ?>

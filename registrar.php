@@ -20,11 +20,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="loginstyle.css" />
+    <link rel="stylesheet" type="text/css" href="registrar.css" />
     <title>Registre-se</title>
 </head>
 
 <body>
+<?php include_once "header.php"; ?>
     <div class="container">
     <form method="POST" class="registro">
         <p> Registro </p>
@@ -49,6 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
     <a class="voltar" href="./login.php"><button class="voltarbt">Voltar</button></a>
     </div>
+    <?php include_once "footer.php"; ?>
 </body>
 
 </html>
