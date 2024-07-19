@@ -18,9 +18,8 @@ $id_usuario = $_SESSION['usuario_id'];
 
 $nome_usuario = $dados_usuario['nome'];
 $nickname_usuario = $dados_usuario['nickname'];
-$dataNasc_usuario = $dados_usuario['dataNasc'];
+$dataNasc_usuario = $dados_usuario['datanasc'];
 $email_usuario = $dados_usuario['email'];
-
 if (isset($_GET['deletar'])) {
     $id = $_GET['deletar'];
     // Verifica se o usuário tem permissão para deletar o usuário
@@ -38,53 +37,45 @@ if (isset($_GET['deletar'])) {
 <html lang="pt-br">
 
 <head>
-    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consultar Usuario</title>
+    <link rel="stylesheet" href="registrar.css">
+    <title>King Can't Scape!</title>
 </head>
 
-<body>
+<body class="body_consult">
     <?php include_once 'header.php'; ?>
 
-    <main>
-        <table>
-            <div >
-                <div >
-                    <div>
-                        <h2>Perfil</h2>
-                    </div>
-                </div>
-                <div >
-                    <form>
-                        <div>
-                            <label><strong>Nome:</strong></label><br>
-                            <label><?php echo $nome_usuario ?></label>
-                        </div><br><br>
-                        <div>
-                            <label><strong>nickname:</strong></label><br>
-                            <label><?php echo $nickname_usuario ?></label>
-                        </div><br><br>
-                        <div >
-                        <div>
-                            <label><strong>Data de nascimento:</strong></label>
-                            <label><?php echo $dataNasc_usuario ?></label>
-                        </div><br><br>
-                        <div >
-                            <label><strong>E-mail:</strong></label><br>
-                            <label><?php echo $email_usuario ?></label>
-                        </div><br><br>
-                    </form>
-                    <a href="editar.php"><button>Editar</button></a>
-                    <a name="deletar" id="deletar" href="deletar.php?id="<?php ?>><button>Deletar</button></a>
-                </div>
-            </div>
-        </table><br><br>
+    <main class="container">
+        <form class="registro">
+            <h2> Perfil </h2><br>
+            <div>
+                <label class="label_lb"><strong>Nome:</strong></label><br>
+                <label class="label_inp"><?php echo $nome_usuario ?></label>
+            </div><br><br>
+            <div>
+                <label class="label_lb"><strong>nickname:</strong></label><br>
+                <label class="label_inp"><?php echo $nickname_usuario ?></label>
+            </div><br><br>
+            <div>
+                <div>
+                    <label class="label_lb"><strong>Data de nascimento:</strong></label><br>
+                    <label class="label_inp"><?php echo $dataNasc_usuario ?></label>
+                </div><br><br>
+                <div>
+                    <label class="label_lb"><strong>E-mail:</strong></label><br>
+                    <label class="label_inp"><?php echo $email_usuario ?></label>
+                </div><br><br>
+        </form>
+
+        <a href="editar.php?id=<?php echo $dados_usuario['id'];?>">Editar</a><br><br><br>
+
+        <a href="deletarUsu.php?id=<?php echo $dados_usuario['id']; ?>">Apagar minha conta</a>
 
     </main>
-
-    <?php include_once 'footer.php'; ?>
-
+<footer>
+    <?php include_once "footer.php"; ?>
+</footer>
 </body>
 
 </html>

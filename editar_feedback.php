@@ -56,26 +56,27 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="registrar.css">
     <title>Editar Feedback</title>
 </head>
 
-<body>
+<body class="body_editar_feed">
     <?php include_once "header.php"; ?>
 
     <main class="container">
-        <section class="editar-feedback">
-            <h2>Editar Feedback</h2>
-            <form action="processar_edicao_feedback.php" method="POST">
+        <section class="editar-feedback" style="align-items: center;">
+            <form action="processar_edicao_feedback.php" method="POST" class="registro_edit">
+                <h2>Editar Feedback</h2><br>
                 <input type="hidden" name="idFeed" value="<?php echo $idFeed; ?>">
-                <label for="conteudo">Novo Conteúdo:</label><br>
-                <textarea name="conteudo" cols="70" rows="5"><?php echo $feedbackData['feedback']; ?></textarea><br>
+                <label for="conteudo"><strong>Novo Conteúdo:</strong></label><br>
+                <textarea name="conteudo" cols="50" rows="10" maxlength="500"><?php echo $feedbackData['feedback']; ?></textarea><br>
                 <input type="submit" class="input_enviar" value="Salvar">
             </form>
         </section>
     </main>
-
-    <?php include_once "footer.php"; ?>
+    <footer>
+        <?php include_once 'footer.php'; ?>
+    </footer>
 </body>
 
 </html>

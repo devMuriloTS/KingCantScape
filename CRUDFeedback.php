@@ -35,11 +35,10 @@ $dados_feedback = $feedback->lerFeed();
 <html lang="pt-br">
 
 <head>
-    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feedbacks</title>
     <link rel="stylesheet" href="CRUDFeedback.css">
+    <title>King Can't Scape!</title>
 </head>
 
 <body>
@@ -47,11 +46,11 @@ $dados_feedback = $feedback->lerFeed();
     <main>
     <div class="feedbacks-publicados">
             <?php while ($row = $dados_feedback->fetch(PDO::FETCH_ASSOC)) : ?>
-                <table class="table" border="1">
+                <table class="table">
                     <td><?php echo $row['nickname']; ?></td>
                     <td><?php echo $row['data']; ?></td>
                 </table>
-                <table class="table-2" border="1">
+                <table class="table-2">
                     <tr>
                         <td><?php echo nl2br($row['feedback']); ?></td>
                         <td><a href="editarFeedback.php?idFeed=<?php echo $row['idFeed']; ?>">Editar</a></td>

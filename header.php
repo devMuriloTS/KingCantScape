@@ -69,12 +69,17 @@ if ($logged_in) {
 
         <div class="btnHeader">
             <?php if($logged_in): ?>
-                <a href="baixar.php" class="btn-download">Baixar</a>
+                <a href="downloads/King Can't Scape.exe" class="btn-download" download>Baixar</a>
             <?php else: ?>
                 <a href="login.php" class="btn-download">Baixar</a>
             <?php endif; ?>
         </div>
 
+        <?php if($exibirBotoesAdmin): ?>
+        <div class="admin-buttons">
+            <a href="CRUDUsuario.php" class="btn-admin">CRUD Usuário</a>
+        </div>
+        <?php endif; ?>
         <div class="login">
             <?php if($logged_in): ?>
                 <span>
@@ -96,13 +101,6 @@ if ($logged_in) {
                 </a>
             <?php endif; ?>
         </div>
-        <!-- Exibir os botões apenas se o usuário for administrador -->
-        <?php if($exibirBotoesAdmin): ?>
-        <div class="admin-buttons">
-            <a href="CRUDFeedback.php" class="btn-admin">CRUD Feedback</a>
-            <a href="CRUDUsuario.php" class="btn-admin">CRUD Usuário</a>
-        </div>
-        <?php endif; ?>
     </header>
 </body>
 </html>

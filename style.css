@@ -8,7 +8,6 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
     color: #333;
 }
 
@@ -16,7 +15,16 @@ body {
     background-image: url('a kingdom at night.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    max-width: 1400px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 83px 0px;
+}
+
+.main_editar{
+    background-image: url('a kingdom at night (1).jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-width: 100%;
     margin: 0 auto;
     padding: 83px 0px;
 }
@@ -92,7 +100,7 @@ body {
 
 .about-game-text {
     flex: 1;
-    max-width: 50%;
+    max-width: 45%;
     text-align: left;
     position: relative;
     z-index: 2;
@@ -162,15 +170,20 @@ td {
 }
 
 label {
-    margin-left: 44%;
     font-size: larger;
 }
 
 textarea {
     padding: 15px;
     margin-top: 1%;
-    margin-left: 22%;
     font-size: larger;
+    resize: none;
+    height: auto;
+}
+
+.form_feed{
+    text-align: center;
+    
 }
 
 .input_enviar {
@@ -182,7 +195,6 @@ textarea {
     border-radius: 5px;
     font-size: 18px;
     transition: 0.3s ease;
-    margin-left: 45%;
 }
 
 .input_enviar:hover {
@@ -193,6 +205,8 @@ textarea {
 .table,
 .table-2 {
     width: 100%;
+    background-color: #ffdd57;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-left: 0;
     table-layout: fixed; /* Ensures that table width is fixed */
 }
@@ -227,13 +241,11 @@ td {
 }
 
 .feedback-item {
-    width: 60%;
+    width: 70%;
     align-items: center;
     justify-content: center;
     margin-bottom: 30px;
-    background-color: #ffdd57;
-    border-radius: 50px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
     padding: 20px;
     text-align: left; /* Ajusta o texto para a esquerda */
     display: inline-block; /* Para centralizar horizontalmente */

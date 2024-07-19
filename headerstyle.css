@@ -13,9 +13,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%; /* Garante que o header ocupe toda a largura disponível */
+    width: 100%;
+    /* Garante que o header ocupe toda a largura disponível */
 }
-
 
 .logo {
     display: flex;
@@ -30,17 +30,21 @@
 }
 
 .imagemLogo {
-    max-width: 50px; /* Ajuste o tamanho da imagem do logo conforme necessário */
-    margin-right: 10px; /* Espaçamento entre a imagem do logo e o texto */
+    max-width: 50px;
+    /* Ajuste o tamanho da imagem do logo conforme necessário */
+    margin-right: 10px;
+    /* Espaçamento entre a imagem do logo e o texto */
 }
 
 .nomeLogo {
-    font-size: 20px; /* Tamanho do texto do nome do site */
+    font-size: 20px;
+    /* Tamanho do texto do nome do site */
     font-weight: bold;
 }
 
 .btnHeader {
-    margin-left: 20px; /* Espaçamento entre os botões */
+    margin-left: 20px;
+    /* Espaçamento entre os botões */
 }
 
 .btn-download {
@@ -69,7 +73,8 @@
 }
 
 .login {
-    margin-left: auto; /* Alinha o bloco de login à direita */
+    margin-left: auto;
+    /* Alinha o bloco de login à direita */
 }
 
 .login a {
@@ -77,8 +82,19 @@
     color: #fff;
     display: flex;
     align-items: center;
+    font-size: 18px;
+    margin-top: 8px;
+    border: #c9a100 1px solid;
+    padding: 4px;
+    border-radius: 20px;
+}
+
+.login a:hover {
+    background-color: #e6b800;
 }
 
 .iconLogin {
-    margin-left: 5px; /* Espaçamento entre o ícone e o texto */
+
+    margin-left: 5px;
+    /* Espaçamento entre o ícone e o texto */
 }
